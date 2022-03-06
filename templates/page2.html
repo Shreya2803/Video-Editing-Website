@@ -1,0 +1,394 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- optional Jscript choose one of the two -->
+
+<!-- navigation bar -->
+<style>
+  /* CSS for NavBar */
+  body {
+  background-color:#d6c8db;
+  
+}
+  .topnav {
+  overflow: hidden;
+  background-color: #333;
+    height:90px
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+ 
+  color: white;
+}
+  .topnav-right {
+  float: right;
+}
+  .button {
+  border-radius: 4px;
+  font-size: 22px;
+  padding: 15px;
+  width: 150px;
+  
+  margin: 5px;
+}
+  /* CSS for Form */
+  * {
+  box-sizing: border-box;
+   
+}
+
+input[type=text], select, textarea {
+   
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  
+}
+
+label {
+
+  padding: 12px 12px 12px 20px;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+input[type=submit] {
+  background-color: #160733;
+   color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  font-weight: 700;
+}
+
+input[type=submit]:hover {
+ background-color: #00ccff;
+  color: black;
+  font-weight: 700;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #495C70;
+  padding: 20px;
+  margin:40px 60px 40px 60px;
+  
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+  color:white;
+  
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+  /* CSS for file upload*/
+  
+.file-upload{
+  margin-left:340px;display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
+.file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+.file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+.file-upload .file-select:hover{border-color:#34495e;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload .file-select:hover .file-select-button{background:#34495e;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload.active .file-select{border-color:#3fa46a;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload.active .file-select .file-select-button{background:#3fa46a;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload .file-select input[type=file]{z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;top:0;left:0;opacity:0;filter:alpha(opacity=0);}
+.file-upload .file-select.file-select-disabled{opacity:0.65;}
+.file-upload .file-select.file-select-disabled:hover{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+
+  
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+/* CSS for audio player*/
+  .group {
+  border: 1px solid #fff;
+  background-color: rgba(255,255,255,.25);
+  padding: .5rem 1rem;
+  margin: 1rem auto;
+}
+
+.url {
+  display: flex;
+  width: 100%;
+  margin: 1rem auto;
+}
+[class*="_label"] {
+  position: relative;
+  white-space: nowrap;
+  margin-right: .5em;
+  min-width: 4em;
+}
+[class*="_label"] > span {
+  display: block;
+  position: relative;
+  top: 50%;
+  transform: translatey(-50%);
+}
+[class*="_input"] {
+  display: inline-block;
+  line-height: 1;
+  width: 100%;
+  margin: 0;
+  padding: .25rem .5rem;
+  font: inherit;
+  border: 1px solid #fff;
+  background-color: rgba(255,255,255,.5);
+}
+
+
+.upload {
+  display: flex;
+  width: 100%;
+  margin: 1rem auto;
+}
+
+.player_audio {
+  width: 100%;
+}
+.player_display {
+  font-size: 1.25rem;
+}
+.tempo {
+  display: flex;
+  width: 100%;
+  margin: 1rem auto;
+}
+.tempo_display {
+  font-weight: 700;
+  min-width: 3em;
+  margin-left: .5em;
+}
+
+  
+</style>
+
+
+ <!-- navigation bar -->
+
+  <div class="topnav">
+    <a href="#heading"><h1 style="color:#00ccff;">Text to Speech Conversion</h1></a> 
+
+
+<div class="topnav-right">
+    <a href="{% url 'home'%}"><button class="button"><span>HomePage </span></button></a>
+    </div>
+ </div>
+<br></br>
+ <h3 style="color:#160733;text-align:center;">Upload File or Write Text</h3>
+
+<!--form and textarea -->
+
+
+<div class="container">
+  
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-25">
+        <label for="gname">Gender</label>
+      </div>
+      <div class="col-75">
+        <select id="gender" name="gender">
+          <option value="voices[0].id">Male</option>
+          <option value="voices[1].id">Female</option>
+          
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="sname">Speed</label>
+      </div>
+      <div class="col-75">
+        <select id="speed" name="speed">
+          <option value="100">0.5x</option>
+          <option value="150">Slow</option>
+          <option value="200"selected>Normal</option>
+          <option value="250">Fast</option>
+          <option value="300">2x</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="volume">Volume</label>
+      </div>
+      <div class="col-75">
+        <select id="volume" name="volume"value="1.0">
+          <option value="0.0">Minimum</option>
+          <option value="0.5">Medium</option>
+          <option value="1.0"selected>Maximum</option>
+          
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Subject</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="Write your text" style="height:200px"></textarea>
+      </div>
+    </div>
+    
+
+<div style="text-align: center; margin-top: 50px;">
+  <h2 style="color:white;">OR</h2>
+</div>
+    
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<div class="file-upload">
+  <div class="file-select">
+    <div class="file-select-button" id="fileName">Choose File</div>
+    <div class="file-select-name" id="noFile">No file chosen...</div> 
+    <input type="file" name="chooseFile" id="chooseFile">
+  </div>
+</div>
+
+  <br></br>  
+  <div class="row">
+      <input type="submit" value="Convert to Speech">
+    </div>
+  </form>                                                        
+    
+</div>
+</div>
+
+
+ <!-- script for'file upload' -->
+<script>$('#chooseFile').bind('change', function () {
+  var filename = $("#chooseFile").val();
+  if (/^\s*$/.test(filename)) {
+    $(".file-upload").removeClass('active');
+    $("#noFile").text("No file chosen..."); 
+  }
+  else {
+    $(".file-upload").addClass('active');
+    $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
+  }
+});
+</script>
+
+
+<!--music player -->
+{% if music %}
+<div class=group>
+  
+    <div class=player>
+      <h3 class=player_display></h3>
+      <audio class=player_audio controls>
+        <track id=player-chords kind=captions srclang=en>
+      </audio>
+    </div>
+
+    <div class=tempo>
+      <label class=tempo_label for=tempo_input>Tempo</label>
+      <input class=tempo_input id=tempo_input type=range value=0.825 min=0.5 max=1 step=0.025>
+      <span class=tempo_display></span>
+    </div>
+    
+  </div>
+  
+
+{% endif %}
+
+
+<!--javascript for player mp3 -->
+<script>
+  
+const player = document.querySelector('.player_audio');
+const playerDisplay = document.querySelector('.player_display');
+
+const changeTempo = function () {
+  player.playbackRate = tempoInput.value;
+  tempoDisplay.textContent = tempoInput.value;
+};
+
+const changeSongURL = function (e) {
+  player.src = urlInput.value;
+  let filename = player.src.split('\\').pop().split('/').pop();
+  playerDisplay.textContent = filename;
+}
+
+const changeSongFile = function (e) {
+  const target = e.currentTarget;
+  const file = target.files[0];
+  let reader;
+
+  if (target.files && file) {
+    reader = new FileReader();
+    reader.onload = function (e) {
+      player.setAttribute('src', e.target.result);
+      playerDisplay.textContent = file.name;
+      // player.play(); // auto play on load
+    }
+    reader.readAsDataURL(file);
+  }
+};
+
+// Get the song from:
+const urlInput = document.getElementById('url_input');
+urlInput.addEventListener("change", changeSongURL, false);
+
+
+// Or upload an MP3:
+const uploadInput = document.getElementById('upload_input');
+uploadInput.addEventListener('change', changeSongFile, false);
+
+
+// Playback tempo 
+const tempoInput = document.getElementById('tempo_input');
+tempoInput.addEventListener("change", changeTempo, false);
+const tempoDisplay = document.querySelector('.tempo_display');
+tempoDisplay.textContent = tempoInput.value;
+
+
+
+// Chords from:
+const vtt = document.getElementById('url_input').value.replace('.mp3', '.vtt');
+const player_chords = document.getElementById('player-chords');
+
+player_chords.src = vtt;
+// player.src = urlInput.value;
+changeSongURL();
+changeTempo();
+</script>
+
+{% endblock content %}
